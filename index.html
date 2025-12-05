@@ -1,0 +1,258 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>D'z PATTISSERIE</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
+    }
+
+    body {
+      background-color: #f5f5f5;
+      color: #333;
+    }
+
+    .page {
+      max-width: 480px;
+      margin: 0 auto;
+      min-height: 100vh;
+      padding: 32px 20px 40px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+    header {
+      text-align: center;
+      margin-bottom: 24px;
+    }
+
+    .logo-wrap {
+      width: 180px;
+      height: 180px;
+      margin: 0 auto 18px;
+      border-radius: 50%;
+      overflow: hidden;
+      background: #333;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .logo-wrap img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+    }
+
+    h1 {
+      font-size: 24px;
+      letter-spacing: 0.08em;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+
+    .tagline {
+      font-size: 14px;
+      color: #777;
+    }
+
+    section {
+      background: #ffffff;
+      border-radius: 16px;
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+    }
+
+    section h2 {
+      font-size: 15px;
+      margin-bottom: 8px;
+    }
+
+    section p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+    }
+
+    .menu-list {
+      list-style: none;
+      font-size: 14px;
+      color: #555;
+    }
+
+    .menu-list li + li {
+      margin-top: 3px;
+    }
+
+    .label {
+      font-size: 12px;
+      font-weight: 600;
+      color: #999;
+      text-transform: uppercase;
+      letter-spacing: 0.12em;
+      margin-bottom: 4px;
+      display: block;
+    }
+
+    .info-row {
+      font-size: 14px;
+      line-height: 1.6;
+    }
+
+    .info-row span {
+      display: inline-block;
+      min-width: 70px;
+      color: #888;
+    }
+
+    .btn-area {
+      margin-top: 8px;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+    }
+
+    .btn {
+      flex: 1 1 48%;
+      text-align: center;
+      padding: 10px 12px;
+      border-radius: 999px;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 600;
+      border: 1px solid #444;
+      color: #fff;
+      background: #444;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+    }
+
+    .btn.sub {
+      background: #ffffff;
+      color: #444;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0.95;
+    }
+
+    footer {
+      text-align: center;
+      font-size: 11px;
+      color: #aaa;
+      margin-top: 10px;
+    }
+
+    @media (max-width: 360px) {
+      .page {
+        padding: 24px 14px 30px;
+      }
+      .logo-wrap {
+        width: 150px;
+        height: 150px;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div>
+      <!-- 상단 로고 + 가게명 -->
+      <header>
+        <div class="logo-wrap">
+          <!-- 👉 여기 파일명을, 네가 저장한 로고 파일명으로 바꾸면 됨 -->
+          <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
+        </div>
+        <h1>D'z PATTISSERIE</h1>
+        <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
+      </header>
+
+      <!-- 소개 -->
+      <section>
+        <span class="label">ABOUT</span>
+        <h2>작은 한 조각으로 채워지는 달콤한 하루</h2>
+        <p>
+          신선한 재료와 정성스러운 공정으로 만드는 케이크와 타르트, 구움과자를 만나보세요.
+          선물용, 기념일, 티타임까지 D'z PATTISSERIE가 달콤하게 채워드립니다.
+        </p>
+      </section>
+
+      <!-- 시그니처 메뉴 -->
+      <section>
+        <span class="label">SIGNATURE MENU</span>
+        <h2>추천 메뉴</h2>
+        <ul class="menu-list">
+          <li>• 시그니처 생크림 케이크</li>
+          <li>• 시즌 과일 타르트</li>
+          <li>• 마들렌 & 피낭시에 세트</li>
+          <li>• 티타임 구움과자 박스</li>
+        </ul>
+      </section>
+
+      <!-- 오픈 이벤트 -->
+      <section>
+        <span class="label">OPEN EVENT</span>
+        <h2>오픈 기념 이벤트</h2>
+        <p>
+          매장 방문 후 인스타그램 업로드 시, 구움과자 1종을 서비스로 드립니다.<br />
+          (기간: ~오픈 후 2주 / 자세한 내용은 매장 내 안내문 참고)
+        </p>
+      </section>
+
+      <!-- 매장 정보 -->
+      <section>
+        <span class="label">INFO</span>
+        <h2>매장 안내</h2>
+        <div class="info-row">
+          <span>주소</span>
+          <div>○○시 ○○구 ○○로 123, 1층 (주소 입력)</div>
+        </div>
+        <div class="info-row">
+          <span>전화</span>
+          <div>010-0000-0000</div>
+        </div>
+        <div class="info-row">
+          <span>영업시간</span>
+          <div>
+            월–금 11:00 ~ 20:00<br />
+            토·일 & 공휴일 12:00 ~ 20:00
+          </div>
+        </div>
+        <div class="btn-area">
+          <!-- 필요 없는 버튼은 a 태그를 지우면 됨 -->
+          <a href="tel:01000000000" class="btn">📞 매장 전화하기</a>
+          <a href="#" class="btn sub">📍 지도 열기</a>
+        </div>
+      </section>
+
+      <!-- SNS / 네이버 링크 -->
+      <section>
+        <span class="label">ONLINE</span>
+        <h2>온라인에서 먼저 둘러보세요</h2>
+        <div class="btn-area">
+          <a href="#" class="btn">📸 인스타그램 바로가기</a>
+          <a href="#" class="btn sub">⭐ 네이버 플레이스 보기</a>
+        </div>
+      </section>
+    </div>
+
+    <footer>
+      © <span id="year"></span> D'z PATTISSERIE. All rights reserved.
+    </footer>
+  </div>
+
+  <script>
+    // 푸터 연도 자동 갱신
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
