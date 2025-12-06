@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D'z PATTISSERIE</title>
-
   <style>
     * {
       box-sizing: border-box;
@@ -13,16 +12,9 @@
       font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
     }
 
-    /* 🔥 배경 이미지 넣고 싶으면 아래 주석 해제하고 파일명 변경 */
     body {
       background-color: #f5f5f5;
       color: #333;
-
-      /* 예시: 배경을 이미지로 채우기
-      background-image: url('background.jpg');
-      background-size: cover;
-      background-position: center;
-      */
     }
 
     .page {
@@ -77,13 +69,18 @@
       padding: 18px 16px;
       margin-bottom: 14px;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
-      line-height: 1.6;
     }
 
     section h2 {
       font-size: 15px;
-      font-weight: 700;
       margin-bottom: 8px;
+    }
+
+    section p {
+      font-size: 14px;
+      line-height: 1.6;
+      color: #555;
+      white-space: pre-line;
     }
 
     .menu-list {
@@ -135,12 +132,18 @@
       border: 1px solid #444;
       color: #fff;
       background: #444;
-      transition: 0.1s ease;
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
     }
 
     .btn.sub {
       background: #ffffff;
       color: #444;
+    }
+
+    .btn:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+      opacity: 0.95;
     }
 
     footer {
@@ -149,18 +152,20 @@
       color: #aaa;
       margin-top: 10px;
     }
-
   </style>
 </head>
 
 <body>
 
-  <!-- 🔥 배경 음악 자동 재생 -->
-  <audio src="BGM.mp3" autoplay loop></audio>
+  <!-- 🎵 배경음악 -->
+  <audio autoplay loop>
+    <source src="BGM.mp3" type="audio/mpeg">
+  </audio>
 
   <div class="page">
     <div>
 
+      <!-- 상단 로고 -->
       <header>
         <div class="logo-wrap">
           <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
@@ -169,47 +174,41 @@
         <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
       </header>
 
-      <!-- 🟣 오픈 공지 섹션 추가 -->
+
+      <!-- 🎉 오픈 안내문 -->
       <section>
-        <span class="label">NOTICE</span>
-        <h2>오픈 인사말</h2>
+        <span class="label">OPENING MESSAGE</span>
+        <h2>디즈 파티세리 오픈 안내</h2>
         <p>
-          안녕하세요!<br><br>
-          한 해의 마지막 달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도  
-          저희 <strong>"디즈파티세리"</strong> 오픈을 기다려주시고 응원해주셔서 진심으로 감사드립니다.<br><br>
+안녕하세요!
 
-          드디어 오랜 준비 과정을 거쳐  
-          <strong>12/10(수) 디저트 케이크 전문점을 오픈</strong>하게 되었습니다.<br><br>
+한해의 마지막달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도  
+저희 "디즈파티세리" 오픈을 기다려주시고 응원해주셔서 진심으로 감사드립니다.
 
-          📌 <strong>상호</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;디즈 파티세리<br><br>
+드디어 오랜 준비과정을 거쳐  
+🎉 12/10(수) 디저트 케이크 전문점을 오픈하게 되었습니다.
 
-          📌 <strong>오픈 날짜</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;12/10(수) 오전 10시 ~ 오후 20시<br><br>
+📌 상호  
+디즈 파티세리
 
-          📌 <strong>찾아오시는 길</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;충남 아산시 탕정면 매곡한들7길 54,  
-          1층 103호<br><br>
+📌 오픈 날짜  
+12/10(수) 오전 10시 ~ 오후 20시
 
-          📌 <strong>주차 안내</strong><br>
-          &nbsp;&nbsp;&nbsp;&nbsp;건물 뒤 공용주차장 이용 가능<br>
-          &nbsp;&nbsp;&nbsp;&nbsp;길가 주차 가능<br><br>
+📌 찾아오시는 길  
+충남 아산시 탕정면 매곡한들7길 54, 1층 103호
 
-          바쁘시더라도 저희의 첫걸음을 함께해주시면 큰 힘이 될 것 같습니다.<br>
-          감사합니다.
+📌 주차  
+건물 뒤 공용주차장 이용 / 길가 주차 가능
+
+바쁘시더라도 저희의 첫걸음을 함께해주시면  
+큰 힘이 될 것 같습니다.
+
+감사합니다.
         </p>
       </section>
 
-      <!-- 기존 섹션들 그대로 유지 -->
-      <section>
-        <span class="label">ABOUT</span>
-        <h2>작은 한 조각으로 채워지는 달콤한 하루</h2>
-        <p>
-          신선한 재료와 정성스러운 공정으로 만드는 케이크와 타르트, 구움과자를 만나보세요.
-          선물용, 기념일, 티타임까지 D'z PATTISSERIE가 달콤하게 채워드립니다.
-        </p>
-      </section>
 
+      <!-- 메뉴 소개 -->
       <section>
         <span class="label">SIGNATURE MENU</span>
         <h2>추천 메뉴</h2>
@@ -221,23 +220,25 @@
         </ul>
       </section>
 
+
+      <!-- 매장 정보 + 네이버 지도 -->
       <section>
         <span class="label">INFO</span>
         <h2>매장 안내</h2>
+
         <div class="info-row">
           <span>주소</span>
           <div>충남 아산시 탕정면 매곡한들7길 54, 1층 103호</div>
         </div>
-        <div class="info-row">
-          <span>전화</span>
-          <div>010-0000-0000</div>
-        </div>
+
         <div class="info-row">
           <span>영업시간</span>
-          <div>
-            월–금 11:00 ~ 20:00<br />
-            토·일 & 공휴일 12:00 ~ 20:00
-          </div>
+          <div>10:00 ~ 20:00 (연중무휴)</div>
+        </div>
+
+        <div class="btn-area">
+          <a href="https://naver.me/I5ygTkP2" class="btn">📍 네이버 지도 보기</a>
+          <a href="tel:01000000000" class="btn sub">📞 전화 문의</a>
         </div>
       </section>
 
@@ -246,11 +247,11 @@
     <footer>
       © <span id="year"></span> D'z PATTISSERIE. All rights reserved.
     </footer>
+
+    <script>
+      document.getElementById("year").textContent = new Date().getFullYear();
+    </script>
+
   </div>
-
-  <script>
-    document.getElementById("year").textContent = new Date().getFullYear();
-  </script>
-
 </body>
 </html>
