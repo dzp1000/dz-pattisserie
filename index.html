@@ -13,7 +13,7 @@
     }
 
     body {
-      background-color: #e8dcc7; /* 흰색 배경으로 복구 */
+      background-color: #e1d4bd;
       color: #333;
       overflow-x: hidden;
     }
@@ -32,7 +32,7 @@
 
     .page {
       position: relative;
-      z-index: 1; /* 눈보다 위에 보이도록 */
+      z-index: 1;
       max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
@@ -47,7 +47,6 @@
       margin-bottom: 8px;
     }
 
-    /* 로고 주변만 반짝이는 효과 */
     .logo-shell {
       display: inline-flex;
       padding: 14px;
@@ -88,7 +87,6 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     h1 {
@@ -119,7 +117,6 @@
       border-radius: 16px;
       overflow: hidden;
       background: #f5f5f5;
-      /* 네모(가로형 카드) 비율 고정 */
       aspect-ratio: 4 / 3;
     }
 
@@ -128,7 +125,7 @@
       inset: 0;
       width: 100%;
       height: 100%;
-      object-fit: cover; /* 빈 여백 없이 꽉 채우기 */
+      object-fit: cover;
       opacity: 0;
       transition: opacity 0.8s ease-in-out;
     }
@@ -145,7 +142,7 @@
     }
 
     .notice-card {
-      border: 1px solid #e0e0e0;  /* 시안성 위해 테두리 추가 */
+      border: 1px solid #dcd2c4;
     }
 
     .notice-text {
@@ -194,18 +191,11 @@
       border: 1px solid #444;
       color: #fff;
       background: #444;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
     }
 
     .btn.sub {
       background: #ffffff;
       color: #444;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.12);
-      opacity: 0.97;
     }
 
     footer {
@@ -214,31 +204,18 @@
       color: #aaa;
       margin-top: 10px;
     }
-
-    @media (max-width: 360px) {
-      .page {
-        padding: 24px 14px 30px;
-      }
-      .logo-wrap {
-        width: 150px;
-        height: 150px;
-      }
-    }
   </style>
 </head>
 <body>
-  <!-- 배경음악 (파일명: BGM.mp3 등으로 맞춰두기) -->
+
   <audio id="bgm" src="BGM.mp3" autoplay loop></audio>
 
-  <!-- 눈 효과 레이어 -->
   <div id="snow"></div>
 
   <div class="page">
-    <!-- 상단 로고 영역 -->
     <header>
       <div class="logo-shell">
         <div class="logo-wrap">
-          <!-- 로고 이미지 파일명은 저장한 이름에 맞춰 변경 -->
           <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
         </div>
       </div>
@@ -246,17 +223,17 @@
       <p class="tagline">하루를 특별하게 만드는 디저트, 디즈 파티세리</p>
     </header>
 
-    <!-- 사진 슬라이드쇼 -->
+    <!-- 슬라이드쇼 -->
     <div class="slideshow card">
-      <img src="1.jpg" alt="디저트 사진 1" class="slide active" />
-      <img src="2.jpg" alt="디저트 사진 2" class="slide" />
-      <img src="3.jpg" alt="디저트 사진 3" class="slide" />
-      <img src="4.jpg" alt="디저트 사진 4" class="slide" />
-      <img src="5.jpg" alt="디저트 사진 5" class="slide" />
-      <img src="6.jpg" alt="디저트 사진 6" class="slide" />
-      <img src="7.jpg" alt="디저트 사진 7" class="slide" />
-      <img src="8.jpg" alt="디저트 사진 8" class="slide" />
-      <img src="9.jpg" alt="디저트 사진 9" class="slide" />
+      <img src="1.jpg" class="slide active" style="object-position:center top 8%;" />
+      <img src="2.jpg" class="slide" />
+      <img src="3.jpg" class="slide" />
+      <img src="4.jpg" class="slide" />
+      <img src="5.jpg" class="slide" />
+      <img src="6.jpg" class="slide" />
+      <img src="7.jpg" class="slide" style="object-position:center bottom;" />
+      <img src="8.jpg" class="slide" style="object-position:center bottom;" />
+      <img src="9.jpg" class="slide" style="object-position:center bottom;" />
     </div>
 
     <!-- OPEN NOTICE -->
@@ -279,7 +256,7 @@
 큰 힘이 될 것 같습니다.
 
 감사합니다.
-        
+
 📌 오픈 날짜  
 12/10(수)  오전 10시 ~ 오후 20시
 
@@ -290,67 +267,55 @@
     </section>
 
     <!-- 매장 정보 -->
-    <section class="card">
+    <section class="card notice-card">
       <div class="section-title">매장 정보</div>
       <div class="info-row">
         <span>주소</span>
-        <div>충남 아산시 탕정면 매곡한들7길 54, 1층 103호</div>
+        충남 아산시 탕정면 매곡한들7길 54, 1층 103호
       </div>
       <div class="info-row">
         <span>영업시간</span>
-        <div>오전 10:00 ~ 오후 20:00</div>
+        오전 10:00 ~ 오후 20:00
       </div>
       <div class="info-row">
         <span>주차</span>
-        <div>건물 뒤 공용주차장 및 인근 길가 주차 가능</div>
+        건물 뒤 공용주차장 및 인근 길가 주차 가능
       </div>
+
       <div class="btn-area">
-        <a href="https://naver.me/I5ygTkP2" class="btn sub" target="_blank" rel="noopener noreferrer">
-          📍 네이버 지도 열기
-        </a>
-        <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0"
-           class="btn" target="_blank" rel="noopener noreferrer">
-          📸 인스타그램 바로가기
-        </a>
+        <a href="https://naver.me/I5ygTkP2" class="btn sub" target="_blank">📍 네이버 지도 열기</a>
+        <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" class="btn" target="_blank">📸 인스타그램 바로가기</a>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> D'z PATTISSERIE. All rights reserved.
+      © <span id="year"></span> D'z PATTISSERIE.
     </footer>
   </div>
 
   <script>
-    // 푸터 연도 자동 갱신
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // 슬라이드쇼
+    /* 슬라이드쇼 */
     const slides = document.querySelectorAll(".slideshow .slide");
     let currentIndex = 0;
 
-    function showSlide(index) {
-      slides.forEach((img, i) => {
-        img.classList.toggle("active", i === index);
-      });
-    }
+    setInterval(() => {
+      slides[currentIndex].classList.remove("active");
+      currentIndex = (currentIndex + 1) % slides.length;
+      slides[currentIndex].classList.add("active");
+    }, 2500);
 
-    if (slides.length > 0) {
-      setInterval(() => {
-        currentIndex = (currentIndex + 1) % slides.length;
-        showSlide(currentIndex);
-      }, 2500);
-    }
-
-    // 눈 효과 (스타일 A: 흰색 눈)
+    /* 눈 효과 A타입 */
     const snowContainer = document.getElementById("snow");
     const SNOW_COUNT = 70;
 
     function createSnowflake() {
       const snowflake = document.createElement("div");
-      const size = Math.random() * 4 + 4; // 4 ~ 8px 정도 크기
+      const size = Math.random() * 4 + 4;
       const startX = Math.random() * 100;
-      const duration = Math.random() * 5 + 6; // 6~11초
-      const delay = Math.random() * 5; // 0~5초
+      const duration = Math.random() * 5 + 6;
+      const delay = Math.random() * 5;
 
       snowflake.style.position = "absolute";
       snowflake.style.top = "-10px";
@@ -358,38 +323,23 @@
       snowflake.style.width = size + "px";
       snowflake.style.height = size + "px";
       snowflake.style.borderRadius = "50%";
-      snowflake.style.background = "rgba(255, 255, 255, 0.9)";
-      snowflake.style.boxShadow = "0 0 6px rgba(255, 255, 255, 0.8)";
+      snowflake.style.background = "rgba(255,255,255,0.9)";
       snowflake.style.opacity = Math.random() * 0.4 + 0.6;
 
       snowflake.style.animation = `fall ${duration}s linear ${delay}s infinite`;
-
       snowContainer.appendChild(snowflake);
     }
 
-    for (let i = 0; i < SNOW_COUNT; i++) {
-      createSnowflake();
-    }
+    for (let i = 0; i < SNOW_COUNT; i++) createSnowflake();
 
-    // 눈 떨어지는 애니메이션 정의
     const style = document.createElement("style");
     style.innerHTML = `
       @keyframes fall {
-        0% {
-          transform: translate3d(0, -10px, 0);
-        }
-        100% {
-          transform: translate3d(10px, 110vh, 0);
-        }
+        0% { transform: translateY(-10px); }
+        100% { transform: translateY(110vh); }
       }
     `;
     document.head.appendChild(style);
   </script>
 </body>
 </html>
-
-
-
-
-
-
