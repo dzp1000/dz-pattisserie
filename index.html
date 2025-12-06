@@ -13,8 +13,12 @@
     }
 
     body {
-      background-color: #f5f5f5;
+      min-height: 100vh;
       color: #333;
+      /* 배경 그라데이션 */
+      background: radial-gradient(circle at top, #ffecef 0, #f7f7fb 40%, #f5f5f5 100%);
+      position: relative;
+      overflow-x: hidden;
     }
 
     .page {
@@ -25,6 +29,8 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
+      position: relative;
+      z-index: 1; /* 눈 효과보다 위에 오도록 */
     }
 
     header {
@@ -42,6 +48,7 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
     }
 
     .logo-wrap img {
@@ -64,11 +71,12 @@
     }
 
     section {
-      background: #ffffff;
+      background: rgba(255, 255, 255, 0.95);
       border-radius: 16px;
       padding: 18px 16px;
       margin-bottom: 14px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
+      backdrop-filter: blur(6px);
     }
 
     section h2 {
@@ -78,7 +86,7 @@
 
     section p {
       font-size: 14px;
-      line-height: 1.6;
+      line-height: 1.7;
       color: #555;
       white-space: pre-line;
     }
@@ -106,6 +114,7 @@
     .info-row {
       font-size: 14px;
       line-height: 1.6;
+      margin-bottom: 4px;
     }
 
     .info-row span {
@@ -115,7 +124,7 @@
     }
 
     .btn-area {
-      margin-top: 8px;
+      margin-top: 10px;
       display: flex;
       flex-wrap: wrap;
       gap: 8px;
@@ -152,63 +161,114 @@
       color: #aaa;
       margin-top: 10px;
     }
+
+    /* 눈 효과 */
+    .snowflake {
+      position: fixed;
+      top: -10px;
+      color: #ffffff;
+      font-size: 10px;
+      opacity: 0.8;
+      pointer-events: none;
+      z-index: 0;
+      text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
+      animation-name: fall;
+      animation-timing-function: linear;
+      animation-iteration-count: infinite;
+    }
+
+    @keyframes fall {
+      0% {
+        transform: translate3d(0, -10px, 0);
+      }
+      100% {
+        transform: translate3d(0, 110vh, 0);
+      }
+    }
+
+    /* BGM 플레이어 살짝 숨김 */
+    #bgm {
+      position: fixed;
+      bottom: 12px;
+      right: 16px;
+      width: 150px;
+      opacity: 0.15;
+      z-index: 3;
+    }
+
+    #bgm:hover {
+      opacity: 1;
+    }
+
+    @media (max-width: 360px) {
+      .page {
+        padding: 24px 14px 30px;
+      }
+      .logo-wrap {
+        width: 150px;
+        height: 150px;
+      }
+    }
   </style>
 </head>
-
 <body>
-
-  <!-- 🎵 배경음악 -->
-  <audio autoplay loop>
-    <source src="BGM.mp3" type="audio/mpeg">
-  </audio>
-
   <div class="page">
     <div>
-
-      <!-- 상단 로고 -->
+      <!-- 상단 로고 + 가게명 -->
       <header>
         <div class="logo-wrap">
+          <!-- 👉 여기 파일명을, 네가 저장한 로고 파일명으로 바꾸면 됨 -->
           <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
         </div>
         <h1>D'z PATTISSERIE</h1>
         <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
       </header>
 
-
-      <!-- 🎉 오픈 안내문 -->
+      <!-- 오픈 안내문 -->
       <section>
-        <span class="label">OPENING MESSAGE</span>
+        <span class="label">OPEN NOTICE</span>
         <h2>디즈 파티세리 오픈 안내</h2>
         <p>
 안녕하세요!
 
-한해의 마지막달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도  
-저희 "디즈파티세리" 오픈을 기다려주시고 응원해주셔서 진심으로 감사드립니다.
+한 해의 마지막 달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도
+저희 "디즈파티세리" 오픈을 기다려주시고 응원해주셔서
+진심으로 감사드립니다.
 
-드디어 오랜 준비과정을 거쳐  
-🎉 12/10(수) 디저트 케이크 전문점을 오픈하게 되었습니다.
+드디어 오랜 준비 과정을 거쳐
+12/10(수) 디저트 케이크 전문점을 오픈하게 되었습니다.
 
 📌 상호  
-디즈 파티세리
+  디즈 파티세리
 
 📌 오픈 날짜  
-12/10(수) 오전 10시 ~ 오후 20시
+  12/10(수) 오전 10시 ~ 오후 20시
 
 📌 찾아오시는 길  
-충남 아산시 탕정면 매곡한들7길 54, 1층 103호
+  충남 아산시 탕정면 매곡한들7길 54 1층 103호  
 
 📌 주차  
-건물 뒤 공용주차장 이용 / 길가 주차 가능
+  건물 뒤 공용 주차장 이용  
+  길가 주차 가능
 
-바쁘시더라도 저희의 첫걸음을 함께해주시면  
+바쁘시더라도 저희의 첫걸음을 함께해주시면
 큰 힘이 될 것 같습니다.
 
 감사합니다.
         </p>
       </section>
 
+      <!-- 소개 -->
+      <section>
+        <span class="label">ABOUT</span>
+        <h2>작은 한 조각으로 채워지는 달콤한 하루</h2>
+        <p>
+신선한 재료와 정성스러운 공정으로 만드는 케이크와 타르트, 구움과자를 만나보세요.
+선물용, 기념일, 티타임까지 D'z PATTISSERIE가 달콤하게 채워드립니다.
+        </p>
+      </section>
 
-      <!-- 메뉴 소개 -->
+      <!-- 시그니처 메뉴 -->
       <section>
         <span class="label">SIGNATURE MENU</span>
         <h2>추천 메뉴</h2>
@@ -220,38 +280,94 @@
         </ul>
       </section>
 
+      <!-- 오픈 이벤트 -->
+      <section>
+        <span class="label">OPEN EVENT</span>
+        <h2>오픈 기념 이벤트</h2>
+        <p>
+매장 방문 후 인스타그램 업로드 시, 구움과자 1종을 서비스로 드립니다.
+(기간: ~ 오픈 후 2주 / 자세한 내용은 매장 내 안내문 참고)
+        </p>
+      </section>
 
-      <!-- 매장 정보 + 네이버 지도 -->
+      <!-- 매장 정보 -->
       <section>
         <span class="label">INFO</span>
         <h2>매장 안내</h2>
-
         <div class="info-row">
           <span>주소</span>
-          <div>충남 아산시 탕정면 매곡한들7길 54, 1층 103호</div>
+          <div>충남 아산시 탕정면 매곡한들7길 54 1층 103호</div>
         </div>
-
+        <div class="info-row">
+          <span>전화</span>
+          <div>010-0000-0000</div>
+        </div>
         <div class="info-row">
           <span>영업시간</span>
-          <div>10:00 ~ 20:00 (연중무휴)</div>
+          <div>
+            월–금 11:00 ~ 20:00<br />
+            토·일 & 공휴일 12:00 ~ 20:00
+          </div>
         </div>
-
         <div class="btn-area">
-          <a href="https://naver.me/I5ygTkP2" class="btn">📍 네이버 지도 보기</a>
-          <a href="tel:01000000000" class="btn sub">📞 전화 문의</a>
+          <a href="tel:01000000000" class="btn">📞 매장 전화하기</a>
+          <a href="https://naver.me/I5ygTkP2" target="_blank" class="btn sub">📍 네이버 지도 열기</a>
         </div>
       </section>
 
+      <!-- SNS / 네이버 링크 -->
+      <section>
+        <span class="label">ONLINE</span>
+        <h2>온라인에서 먼저 둘러보세요</h2>
+        <div class="btn-area">
+          <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" target="_blank" class="btn">
+            📸 인스타그램 바로가기
+          </a>
+          <a href="https://naver.me/I5ygTkP2" target="_blank" class="btn sub">
+            ⭐ 네이버 지도 보기
+          </a>
+        </div>
+      </section>
     </div>
 
     <footer>
       © <span id="year"></span> D'z PATTISSERIE. All rights reserved.
     </footer>
-
-    <script>
-      document.getElementById("year").textContent = new Date().getFullYear();
-    </script>
-
   </div>
+
+  <!-- 배경 음악 (파일명: BGM.mp3) -->
+  <!-- 📌 같은 폴더에 BGM.mp3 올려두기 -->
+  <audio id="bgm" src="BGM.mp3" autoplay loop controls></audio>
+
+  <script>
+    // 푸터 연도 자동 갱신
+    document.getElementById("year").textContent = new Date().getFullYear();
+
+    // 눈 내리는 효과
+    function createSnowflake() {
+      const snowflake = document.createElement("div");
+      snowflake.classList.add("snowflake");
+      snowflake.textContent = "✦"; // 눈 송이 모양
+
+      const size = Math.random() * 8 + 6; // 6 ~ 14px
+      const startLeft = Math.random() * 100; // vw
+      const duration = Math.random() * 8 + 6; // 6 ~ 14초
+      const delay = Math.random() * 5; // 시작 지연
+
+      snowflake.style.left = startLeft + "vw";
+      snowflake.style.fontSize = size + "px";
+      snowflake.style.animationDuration = duration + "s";
+      snowflake.style.animationDelay = delay + "s";
+
+      document.body.appendChild(snowflake);
+
+      setTimeout(() => {
+        snowflake.remove();
+      }, (duration + delay) * 1000);
+    }
+
+    // 일정 간격으로 눈 생성
+    setInterval(createSnowflake, 400);
+  </script>
 </body>
 </html>
