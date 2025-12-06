@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D'z PATTISSERIE</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -13,12 +14,40 @@
     }
 
     body {
-      min-height: 100vh;
+      background-color: #f5f5f5;
       color: #333;
-      /* 배경 그라데이션 */
-      background: radial-gradient(circle at top, #ffecef 0, #f7f7fb 40%, #f5f5f5 100%);
-      position: relative;
       overflow-x: hidden;
+      position: relative;
+    }
+
+    /* 배경 눈 효과 */
+    .snow {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      pointer-events: none;
+      z-index: 5;
+    }
+
+    .snow span {
+      position: absolute;
+      top: -10px;
+      width: 12px;
+      height: 12px;
+      background: white;
+      border-radius: 50%;
+      animation: fall linear infinite;
+      opacity: 0.9;
+      filter: blur(1px);
+    }
+
+    @keyframes fall {
+      to {
+        transform: translateY(120vh) translateX(-20px);
+        opacity: 0.7;
+      }
     }
 
     .page {
@@ -26,11 +55,8 @@
       margin: 0 auto;
       min-height: 100vh;
       padding: 32px 20px 40px;
-      display: flex;
-      flex-direction: column;
-      justify-content: space-between;
       position: relative;
-      z-index: 1; /* 눈 효과보다 위에 오도록 */
+      z-index: 10;
     }
 
     header {
@@ -38,6 +64,7 @@
       margin-bottom: 24px;
     }
 
+    /* 반짝이는 로고 효과 */
     .logo-wrap {
       width: 180px;
       height: 180px;
@@ -48,14 +75,19 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 25px rgba(0, 0, 0, 0.18);
+      animation: glow 3s infinite ease-in-out;
+    }
+
+    @keyframes glow {
+      0% { box-shadow: 0 0 6px #fff; }
+      50% { box-shadow: 0 0 22px #ffb8e8; }
+      100% { box-shadow: 0 0 6px #fff; }
     }
 
     .logo-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
-      display: block;
     }
 
     h1 {
@@ -71,56 +103,24 @@
     }
 
     section {
-      background: rgba(255, 255, 255, 0.95);
+      background: #ffffffd8;
       border-radius: 16px;
-      padding: 18px 16px;
-      margin-bottom: 14px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.05);
-      backdrop-filter: blur(6px);
+      padding: 20px 18px;
+      margin-bottom: 18px;
+      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
     }
 
     section h2 {
-      font-size: 15px;
-      margin-bottom: 8px;
+      font-size: 18px;
+      margin-bottom: 10px;
+      font-weight: 700;
     }
 
     section p {
-      font-size: 14px;
+      font-size: 15px;
       line-height: 1.7;
-      color: #555;
+      color: #444;
       white-space: pre-line;
-    }
-
-    .menu-list {
-      list-style: none;
-      font-size: 14px;
-      color: #555;
-    }
-
-    .menu-list li + li {
-      margin-top: 3px;
-    }
-
-    .label {
-      font-size: 12px;
-      font-weight: 600;
-      color: #999;
-      text-transform: uppercase;
-      letter-spacing: 0.12em;
-      margin-bottom: 4px;
-      display: block;
-    }
-
-    .info-row {
-      font-size: 14px;
-      line-height: 1.6;
-      margin-bottom: 4px;
-    }
-
-    .info-row span {
-      display: inline-block;
-      min-width: 70px;
-      color: #888;
     }
 
     .btn-area {
@@ -141,7 +141,7 @@
       border: 1px solid #444;
       color: #fff;
       background: #444;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+      transition: 0.1s ease;
     }
 
     .btn.sub {
@@ -150,9 +150,8 @@
     }
 
     .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      opacity: 0.95;
+      transform: translateY(-2px);
+      opacity: 0.9;
     }
 
     footer {
@@ -161,213 +160,86 @@
       color: #aaa;
       margin-top: 10px;
     }
-
-    /* 눈 효과 */
-    .snowflake {
-      position: fixed;
-      top: -10px;
-      color: #ffffff;
-      font-size: 10px;
-      opacity: 0.8;
-      pointer-events: none;
-      z-index: 0;
-      text-shadow: 0 0 6px rgba(255, 255, 255, 0.8);
-      animation-name: fall;
-      animation-timing-function: linear;
-      animation-iteration-count: infinite;
-    }
-
-    @keyframes fall {
-      0% {
-        transform: translate3d(0, -10px, 0);
-      }
-      100% {
-        transform: translate3d(0, 110vh, 0);
-      }
-    }
-
-    /* BGM 플레이어 살짝 숨김 */
-    #bgm {
-      position: fixed;
-      bottom: 12px;
-      right: 16px;
-      width: 150px;
-      opacity: 0.15;
-      z-index: 3;
-    }
-
-    #bgm:hover {
-      opacity: 1;
-    }
-
-    @media (max-width: 360px) {
-      .page {
-        padding: 24px 14px 30px;
-      }
-      .logo-wrap {
-        width: 150px;
-        height: 150px;
-      }
-    }
   </style>
 </head>
-<body>
-  <div class="page">
-    <div>
-      <!-- 상단 로고 + 가게명 -->
-      <header>
-        <div class="logo-wrap">
-          <!-- 👉 여기 파일명을, 네가 저장한 로고 파일명으로 바꾸면 됨 -->
-          <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
-        </div>
-        <h1>D'z PATTISSERIE</h1>
-        <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
-      </header>
 
-      <!-- 오픈 안내문 -->
-      <section>
-        <span class="label">OPEN NOTICE</span>
-        <h2>디즈 파티세리 오픈 안내</h2>
-        <p>
+<body>
+
+  <!-- 눈 내리는 효과 -->
+  <div class="snow"></div>
+
+  <!-- 배경음악 -->
+  <audio autoplay loop>
+    <source src="BGM.mp3" type="audio/mpeg">
+  </audio>
+
+  <div class="page">
+    <header>
+      <div class="logo-wrap">
+        <img src="logo-dz.png" alt="D'z PATTISSERIE 로고">
+      </div>
+
+      <h1>D'z PATTISSERIE</h1>
+      <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
+    </header>
+
+    <!-- 오픈 공지 -->
+    <section>
+      <h2>OPEN NOTICE</h2>
+      <p>
 안녕하세요!
 
-한 해의 마지막 달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도
-저희 "디즈파티세리" 오픈을 기다려주시고 응원해주셔서
-진심으로 감사드립니다.
+한해의 마지막 달인 12월을 맞아 분주하시고 바쁘신 와중에도  
+저희 "디즈파티세리" 오픈을 기다려주시고 응원해주셔서 진심으로 감사드립니다.
 
-드디어 오랜 준비 과정을 거쳐
-12/10(수) 디저트 케이크 전문점을 오픈하게 되었습니다.
+드디어 오랜 준비 과정을 거쳐  
+**12/10(수) 디저트 케이크 전문점**을 오픈하게 되었습니다.
 
-📌 상호  
-  디즈 파티세리
+📌 **오픈 날짜**  
+12/10(수) 오전 10시 ~ 오후 20시
 
-📌 오픈 날짜  
-  12/10(수) 오전 10시 ~ 오후 20시
+📌 **주소**  
+충남 아산시 탕정면 매곡한들7길 54 1층 103호    
 
-📌 찾아오시는 길  
-  충남 아산시 탕정면 매곡한들7길 54 1층 103호  
+📌 **주차 안내**  
+건물 뒤 공용주차장 이용, 길가 주차 가능
 
-📌 주차  
-  건물 뒤 공용 주차장 이용  
-  길가 주차 가능
-
-바쁘시더라도 저희의 첫걸음을 함께해주시면
-큰 힘이 될 것 같습니다.
-
+바쁘시더라도 저희의 첫걸음을 함께해주시면 큰 힘이 될 것 같습니다.  
 감사합니다.
-        </p>
-      </section>
+      </p>
 
-      <!-- 소개 -->
-      <section>
-        <span class="label">ABOUT</span>
-        <h2>작은 한 조각으로 채워지는 달콤한 하루</h2>
-        <p>
-신선한 재료와 정성스러운 공정으로 만드는 케이크와 타르트, 구움과자를 만나보세요.
-선물용, 기념일, 티타임까지 D'z PATTISSERIE가 달콤하게 채워드립니다.
-        </p>
-      </section>
-
-      <!-- 시그니처 메뉴 -->
-      <section>
-        <span class="label">SIGNATURE MENU</span>
-        <h2>추천 메뉴</h2>
-        <ul class="menu-list">
-          <li>• 시그니처 생크림 케이크</li>
-          <li>• 시즌 과일 타르트</li>
-          <li>• 마들렌 & 피낭시에 세트</li>
-          <li>• 티타임 구움과자 박스</li>
-        </ul>
-      </section>
-
-      <!-- 오픈 이벤트 -->
-      <section>
-        <span class="label">OPEN EVENT</span>
-        <h2>오픈 기념 이벤트</h2>
-        <p>
-매장 방문 후 인스타그램 업로드 시, 구움과자 1종을 서비스로 드립니다.
-(기간: ~ 오픈 후 2주 / 자세한 내용은 매장 내 안내문 참고)
-        </p>
-      </section>
-
-      <!-- 매장 정보 -->
-      <section>
-        <span class="label">INFO</span>
-        <h2>매장 안내</h2>
-        <div class="info-row">
-          <span>주소</span>
-          <div>충남 아산시 탕정면 매곡한들7길 54 1층 103호</div>
-        </div>
-        <div class="info-row">
-          <span>전화</span>
-          <div>010-0000-0000</div>
-        </div>
-        <div class="info-row">
-          <span>영업시간</span>
-          <div>
-            월–금 11:00 ~ 20:00<br />
-            토·일 & 공휴일 12:00 ~ 20:00
-          </div>
-        </div>
-        <div class="btn-area">
-          <a href="tel:01000000000" class="btn">📞 매장 전화하기</a>
-          <a href="https://naver.me/I5ygTkP2" target="_blank" class="btn sub">📍 네이버 지도 열기</a>
-        </div>
-      </section>
-
-      <!-- SNS / 네이버 링크 -->
-      <section>
-        <span class="label">ONLINE</span>
-        <h2>온라인에서 먼저 둘러보세요</h2>
-        <div class="btn-area">
-          <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" target="_blank" class="btn">
-            📸 인스타그램 바로가기
-          </a>
-          <a href="https://naver.me/I5ygTkP2" target="_blank" class="btn sub">
-            ⭐ 네이버 지도 보기
-          </a>
-        </div>
-      </section>
-    </div>
+      <div class="btn-area">
+        <a href="https://naver.me/I5ygTkP2" class="btn sub">📍 네이버 지도</a>
+        <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" class="btn">📸 인스타그램</a>
+      </div>
+    </section>
 
     <footer>
       © <span id="year"></span> D'z PATTISSERIE. All rights reserved.
     </footer>
   </div>
 
-  <!-- 배경 음악 (파일명: BGM.mp3) -->
-  <!-- 📌 같은 폴더에 BGM.mp3 올려두기 -->
-  <audio id="bgm" src="BGM.mp3" autoplay loop controls></audio>
-
   <script>
-    // 푸터 연도 자동 갱신
+    // 연도 자동 적용
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // 눈 내리는 효과
-    function createSnowflake() {
-      const snowflake = document.createElement("div");
-      snowflake.classList.add("snowflake");
-      snowflake.textContent = "✦"; // 눈 송이 모양
+    // 눈 큰 사이즈 생성
+    const snowContainer = document.querySelector(".snow");
 
-      const size = Math.random() * 8 + 6; // 6 ~ 14px
-      const startLeft = Math.random() * 100; // vw
-      const duration = Math.random() * 8 + 6; // 6 ~ 14초
-      const delay = Math.random() * 5; // 시작 지연
+    for (let i = 0; i < 45; i++) {
+      const snow = document.createElement("span");
+      let size = Math.random() * 14 + 8; // 8~22px 눈 크기
+      let left = Math.random() * 100;
+      let duration = Math.random() * 4 + 4;
 
-      snowflake.style.left = startLeft + "vw";
-      snowflake.style.fontSize = size + "px";
-      snowflake.style.animationDuration = duration + "s";
-      snowflake.style.animationDelay = delay + "s";
+      snow.style.width = size + "px";
+      snow.style.height = size + "px";
+      snow.style.left = left + "%";
+      snow.style.animationDuration = duration + "s";
 
-      document.body.appendChild(snowflake);
-
-      setTimeout(() => {
-        snowflake.remove();
-      }, (duration + delay) * 1000);
+      snowContainer.appendChild(snow);
     }
-
-    // 일정 간격으로 눈 생성
-    setInterval(createSnowflake, 400);
   </script>
+
 </body>
 </html>
