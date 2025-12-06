@@ -4,7 +4,6 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D'z PATTISSERIE</title>
-
   <style>
     * {
       box-sizing: border-box;
@@ -14,49 +13,56 @@
     }
 
     body {
-      background-color: #f5f5f5;
-      color: #333;
+      background-color: #111;
+      color: #f5f5f5;
       overflow-x: hidden;
-      position: relative;
     }
 
-    /* 배경 눈 효과 */
+    /* 눈 내리는 효과 영역 */
     .snow {
       position: fixed;
-      top: 0;
+      top: -10%;
       left: 0;
       width: 100%;
-      height: 100%;
+      height: 120%;
       pointer-events: none;
-      z-index: 5;
+      z-index: 1;
+      overflow: hidden;
     }
 
-    .snow span {
+    .snowflake {
       position: absolute;
-      top: -10px;
-      width: 12px;
-      height: 12px;
-      background: white;
-      border-radius: 50%;
-      animation: fall linear infinite;
+      top: -10%;
+      color: #fff;
+      font-size: 22px; /* 눈 크게 */
       opacity: 0.9;
-      filter: blur(1px);
+      filter: drop-shadow(0 0 6px rgba(255,255,255,0.9));
+      animation-name: fall, sway;
+      animation-iteration-count: infinite;
+      animation-timing-function: linear;
     }
 
     @keyframes fall {
-      to {
-        transform: translateY(120vh) translateX(-20px);
-        opacity: 0.7;
-      }
+      0% { transform: translateY(-10vh); }
+      100% { transform: translateY(110vh); }
+    }
+
+    @keyframes sway {
+      0% { transform: translateX(0); }
+      50% { transform: translateX(25px); }
+      100% { transform: translateX(-25px); }
     }
 
     .page {
+      position: relative;
+      z-index: 2;
       max-width: 480px;
       margin: 0 auto;
       min-height: 100vh;
       padding: 32px 20px 40px;
-      position: relative;
-      z-index: 10;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
     }
 
     header {
@@ -64,30 +70,57 @@
       margin-bottom: 24px;
     }
 
-    /* 반짝이는 로고 효과 */
     .logo-wrap {
-      width: 180px;
-      height: 180px;
+      width: 190px;
+      height: 190px;
       margin: 0 auto 18px;
       border-radius: 50%;
       overflow: hidden;
-      background: #333;
+      background: radial-gradient(circle at 30% 30%, #fff 0, #444 45%, #000 100%);
       display: flex;
       align-items: center;
       justify-content: center;
-      animation: glow 3s infinite ease-in-out;
+      position: relative;
+      box-shadow:
+        0 0 18px rgba(255, 255, 255, 0.6),
+        0 0 28px rgba(255, 220, 180, 0.6);
+      animation: logoGlow 3s ease-in-out infinite;
     }
 
-    @keyframes glow {
-      0% { box-shadow: 0 0 6px #fff; }
-      50% { box-shadow: 0 0 22px #ffb8e8; }
-      100% { box-shadow: 0 0 6px #fff; }
+    .logo-wrap::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: radial-gradient(circle at 10% 0, rgba(255,255,255,0.7), transparent 55%);
+      mix-blend-mode: screen;
+      opacity: 0.7;
+      animation: twinkle 2.4s ease-in-out infinite;
+      pointer-events: none;
     }
 
     .logo-wrap img {
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
+    }
+
+    @keyframes logoGlow {
+      0%, 100% {
+        box-shadow:
+          0 0 10px rgba(255, 255, 255, 0.5),
+          0 0 20px rgba(255, 220, 180, 0.5);
+      }
+      50% {
+        box-shadow:
+          0 0 24px rgba(255, 255, 255, 0.95),
+          0 0 40px rgba(255, 230, 200, 0.9);
+      }
+    }
+
+    @keyframes twinkle {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 1; }
     }
 
     h1 {
@@ -99,28 +132,101 @@
 
     .tagline {
       font-size: 14px;
-      color: #777;
+      color: #ddd;
+    }
+
+    /* 슬라이드쇼 */
+    .slider {
+      margin: 20px auto 18px;
+      width: 100%;
+      max-width: 440px;
+      aspect-ratio: 4 / 3;
+      border-radius: 18px;
+      overflow: hidden;
+      position: relative;
+      box-shadow: 0 12px 28px rgba(0,0,0,0.5);
+      background: #000;
+    }
+
+    .slider img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      display: block;
+      opacity: 0;
+      transition: opacity 0.8s ease-in-out;
+    }
+
+    .slider img.active {
+      opacity: 1;
+    }
+
+    .slider-dots {
+      position: absolute;
+      bottom: 8px;
+      left: 50%;
+      transform: translateX(-50%);
+      display: flex;
+      gap: 4px;
+    }
+
+    .slider-dot {
+      width: 8px;
+      height: 8px;
+      border-radius: 50%;
+      border: 1px solid rgba(255,255,255,0.8);
+      background: rgba(0,0,0,0.3);
+    }
+
+    .slider-dot.active {
+      background: #fff;
+      box-shadow: 0 0 6px rgba(255,255,255,0.9);
     }
 
     section {
-      background: #ffffffd8;
+      background: rgba(20, 20, 20, 0.9);
       border-radius: 16px;
-      padding: 20px 18px;
-      margin-bottom: 18px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      padding: 18px 16px;
+      margin-bottom: 14px;
+      box-shadow: 0 12px 24px rgba(0, 0, 0, 0.7);
+      border: 1px solid rgba(255,255,255,0.06);
+      backdrop-filter: blur(12px);
     }
 
     section h2 {
-      font-size: 18px;
+      font-size: 16px;
       margin-bottom: 10px;
       font-weight: 700;
     }
 
     section p {
-      font-size: 15px;
+      font-size: 14px;
       line-height: 1.7;
-      color: #444;
+      color: #eee;
       white-space: pre-line;
+    }
+
+    .menu-list {
+      list-style: none;
+      font-size: 14px;
+      color: #eee;
+      margin-top: 4px;
+    }
+
+    .menu-list li + li {
+      margin-top: 3px;
+    }
+
+    .info-row {
+      font-size: 14px;
+      line-height: 1.6;
+      margin-bottom: 6px;
+    }
+
+    .info-row span {
+      display: inline-block;
+      min-width: 70px;
+      color: #bbb;
     }
 
     .btn-area {
@@ -138,81 +244,187 @@
       text-decoration: none;
       font-size: 13px;
       font-weight: 600;
-      border: 1px solid #444;
-      color: #fff;
-      background: #444;
-      transition: 0.1s ease;
+      border: 1px solid #f8d9a0;
+      color: #111;
+      background: linear-gradient(135deg, #ffe6b8, #fff3d9);
+      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
     }
 
     .btn.sub {
-      background: #ffffff;
-      color: #444;
+      background: transparent;
+      color: #ffe6b8;
+      border-color: #ffe6b8;
     }
 
     .btn:hover {
-      transform: translateY(-2px);
-      opacity: 0.9;
+      transform: translateY(-1px);
+      box-shadow: 0 4px 12px rgba(0, 0, 0, 0.4);
+      opacity: 0.96;
     }
 
     footer {
       text-align: center;
       font-size: 11px;
-      color: #aaa;
+      color: #888;
       margin-top: 10px;
+    }
+
+    /* BGM 버튼 */
+    .bgm-button {
+      position: fixed;
+      right: 16px;
+      bottom: 18px;
+      z-index: 10;
+      padding: 9px 14px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,0.6);
+      background: rgba(0,0,0,0.6);
+      color: #fff;
+      font-size: 13px;
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      cursor: pointer;
+      backdrop-filter: blur(8px);
+      box-shadow: 0 6px 14px rgba(0,0,0,0.6);
+    }
+
+    .bgm-button span.icon {
+      animation: pulse 1.2s ease-in-out infinite;
+    }
+
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); opacity: 0.8; }
+      50% { transform: scale(1.2); opacity: 1; }
+    }
+
+    @media (max-width: 360px) {
+      .page {
+        padding: 24px 14px 30px;
+      }
+      .logo-wrap {
+        width: 160px;
+        height: 160px;
+      }
     }
   </style>
 </head>
-
 <body>
+  <!-- 눈 효과 -->
+  <div class="snow" id="snow"></div>
 
-  <!-- 눈 내리는 효과 -->
-  <div class="snow"></div>
-
-  <!-- 배경음악 -->
-  <audio autoplay loop>
-    <source src="BGM.mp3" type="audio/mpeg">
-  </audio>
+  <!-- BGM -->
+  <!-- BGM 파일명은 'BGM' 그대로 사용 (확장자는 GitHub에 올린 그대로) -->
+  <audio id="bgm" src="BGM" loop></audio>
+  <button class="bgm-button" id="bgmButton">
+    <span class="icon">🎵</span>
+    <span class="text">BGM 재생</span>
+  </button>
 
   <div class="page">
-    <header>
-      <div class="logo-wrap">
-        <img src="logo-dz.png" alt="D'z PATTISSERIE 로고">
+    <div>
+      <!-- 상단 로고 + 가게명 -->
+      <header>
+        <div class="logo-wrap">
+          <!-- 👉 여기 파일명을, 로고 파일명으로 맞춰주세요 -->
+          <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
+        </div>
+        <h1>D'z PATTISSERIE</h1>
+        <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
+      </header>
+
+      <!-- 슬라이드쇼 (1~9 이미지) -->
+      <div class="slider">
+        <!-- 확장자가 .jpg가 아닐 경우 아래 JS 배열에서 파일명 수정 -->
+        <img id="sliderImage" src="1.jpg" alt="디즈 파티세리 이미지" class="active" />
+        <div class="slider-dots" id="sliderDots"></div>
       </div>
 
-      <h1>D'z PATTISSERIE</h1>
-      <p class="tagline">하루를 특별하게 만드는 디저트, 디즈 파티세리</p>
-    </header>
+      <!-- 소개 -->
+      <section>
+        <h2>달콤함으로 채우는 디즈 파티세리</h2>
+        <p>
+신선한 재료와 정성스러운 공정으로 만드는 디저트 케이크 전문점,
+D'z PATTISSERIE입니다.
 
-    <!-- 오픈 공지 -->
-    <section>
-      <h2>OPEN NOTICE</h2>
-      <p>
+작은 한 조각의 케이크가 하루를 특별하게 만들어 줄 수 있다고 믿습니다.
+기념일, 선물, 티타임까지 디즈 파티세리가 달콤하게 채워드릴게요.
+        </p>
+      </section>
+
+      <!-- 시그니처 메뉴 -->
+      <section>
+        <h2>추천 디저트</h2>
+        <ul class="menu-list">
+          <li>• 시그니처 생크림 케이크</li>
+          <li>• 시즌 과일 타르트</li>
+          <li>• 마들렌 & 피낭시에 세트</li>
+          <li>• 티타임 구움과자 박스</li>
+        </ul>
+      </section>
+
+      <!-- 오픈 안내 (OPEN NOTICE, 상호/찾아오시는 길 제외) -->
+      <section>
+        <h2>OPEN NOTICE</h2>
+        <p>
 안녕하세요!
 
-한해의 마지막 달인 12월을 맞아 분주하시고 바쁘신 와중에도  
-저희 "디즈파티세리" 오픈을 기다려주시고 응원해주셔서 진심으로 감사드립니다.
+한 해의 마지막 달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도
+저희 "디즈파티세리" 오픈을 기다려 주시고 응원해 주셔서
+진심으로 감사드립니다.
 
-드디어 오랜 준비 과정을 거쳐  
-**12/10(수) 디저트 케이크 전문점**을 오픈하게 되었습니다.
+드디어 오랜 준비 과정을 거쳐
+12/10(수) 디저트 케이크 전문점을 오픈하게 되었습니다.
 
-📌 **오픈 날짜**  
-12/10(수) 오전 10시 ~ 오후 20시
+📌 오픈 날짜  
+  12/10(수) 오전 10시 ~ 오후 20시
 
-📌 **주소**  
-충남 아산시 탕정면 매곡한들7길 54 1층 103호    
+📌 주차  
+  건물 뒤 공용주차장 이용  
+  길가 주차 가능
 
-📌 **주차 안내**  
-건물 뒤 공용주차장 이용, 길가 주차 가능
+바쁘시더라도 저희의 첫걸음을 함께 해주시면
+큰 힘이 될 것 같습니다.
 
-바쁘시더라도 저희의 첫걸음을 함께해주시면 큰 힘이 될 것 같습니다.  
 감사합니다.
-      </p>
+        </p>
+      </section>
 
-      <div class="btn-area">
-        <a href="https://naver.me/I5ygTkP2" class="btn sub">📍 네이버 지도</a>
-        <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" class="btn">📸 인스타그램</a>
-      </div>
-    </section>
+      <!-- 매장 정보 -->
+      <section>
+        <h2>매장 정보</h2>
+        <div class="info-row">
+          <span>주소</span>
+          <div>충남 아산시 탕정면 매곡한들7길 54, 1층 103호</div>
+        </div>
+        <div class="info-row">
+          <span>전화</span>
+          <div>010-0000-0000</div>
+        </div>
+        <div class="info-row">
+          <span>영업시간</span>
+          <div>
+            월–금 11:00 ~ 20:00<br />
+            토·일 & 공휴일 12:00 ~ 20:00
+          </div>
+        </div>
+        <div class="btn-area">
+          <a href="tel:01000000000" class="btn">📞 매장 전화하기</a>
+          <a href="https://naver.me/I5ygTkP2" target="_blank" class="btn sub">📍 네이버 지도 열기</a>
+        </div>
+      </section>
+
+      <!-- 온라인 링크 -->
+      <section>
+        <h2>온라인에서 만나보세요</h2>
+        <div class="btn-area">
+          <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0"
+             target="_blank" class="btn">
+            📸 인스타그램 바로가기
+          </a>
+        </div>
+      </section>
+    </div>
 
     <footer>
       © <span id="year"></span> D'z PATTISSERIE. All rights reserved.
@@ -220,27 +432,87 @@
   </div>
 
   <script>
-    // 연도 자동 적용
+    // 연도 자동 갱신
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    // 눈 큰 사이즈 생성
-    const snowContainer = document.querySelector(".snow");
+    // 눈 생성
+    const snowContainer = document.getElementById("snow");
+    const snowflakeCount = 70; // 눈 개수
 
-    for (let i = 0; i < 45; i++) {
-      const snow = document.createElement("span");
-      let size = Math.random() * 14 + 8; // 8~22px 눈 크기
-      let left = Math.random() * 100;
-      let duration = Math.random() * 4 + 4;
-
-      snow.style.width = size + "px";
-      snow.style.height = size + "px";
-      snow.style.left = left + "%";
-      snow.style.animationDuration = duration + "s";
-
-      snowContainer.appendChild(snow);
+    for (let i = 0; i < snowflakeCount; i++) {
+      const span = document.createElement("span");
+      span.className = "snowflake";
+      span.textContent = "❄";
+      span.style.left = Math.random() * 100 + "vw";
+      const duration = 8 + Math.random() * 8; // 8~16초
+      const delay = Math.random() * 10;       // 시작 시간 랜덤
+      const size = 20 + Math.random() * 18;   // 20~38px
+      span.style.fontSize = size + "px";
+      span.style.animationDuration = duration + "s, " + (6 + Math.random() * 6) + "s";
+      span.style.animationDelay = delay + "s, 0s";
+      snowContainer.appendChild(span);
     }
-  </script>
 
+    // 슬라이드쇼
+    const sliderImage = document.getElementById("sliderImage");
+    const sliderDotsContainer = document.getElementById("sliderDots");
+    // 👉 이미지 확장자가 .jpg가 아닐 경우, 아래 배열을 파일명에 맞게 수정하세요.
+    const images = ["1.jpg", "2.jpg", "3.jpg", "4.jpg", "5.jpg", "6.jpg", "7.jpg", "8.jpg", "9.jpg"];
+    let currentIndex = 0;
+
+    images.forEach((_, idx) => {
+      const dot = document.createElement("div");
+      dot.className = "slider-dot" + (idx === 0 ? " active" : "");
+      dot.dataset.index = idx;
+      sliderDotsContainer.appendChild(dot);
+    });
+
+    const dots = document.querySelectorAll(".slider-dot");
+
+    function showSlide(index) {
+      currentIndex = index % images.length;
+      if (currentIndex < 0) currentIndex = images.length - 1;
+      sliderImage.classList.remove("active");
+      setTimeout(() => {
+        sliderImage.src = images[currentIndex];
+        sliderImage.classList.add("active");
+      }, 80);
+      dots.forEach((d, i) => {
+        d.classList.toggle("active", i === currentIndex);
+      });
+    }
+
+    setInterval(() => {
+      showSlide(currentIndex + 1);
+    }, 3500);
+
+    dots.forEach(dot => {
+      dot.addEventListener("click", () => {
+        const idx = parseInt(dot.dataset.index, 10);
+        showSlide(idx);
+      });
+    });
+
+    // BGM 재생 버튼
+    const bgm = document.getElementById("bgm");
+    const bgmButton = document.getElementById("bgmButton");
+    let isPlaying = false;
+
+    bgmButton.addEventListener("click", async () => {
+      try {
+        if (!isPlaying) {
+          await bgm.play();
+          isPlaying = true;
+          bgmButton.querySelector(".text").textContent = "BGM 일시정지";
+        } else {
+          bgm.pause();
+          isPlaying = false;
+          bgmButton.querySelector(".text").textContent = "BGM 재생";
+        }
+      } catch (e) {
+        console.log("BGM 재생 실패:", e);
+      }
+    });
+  </script>
 </body>
 </html>
-
