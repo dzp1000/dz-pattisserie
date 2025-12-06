@@ -73,12 +73,6 @@
       justify-content: center;
     }
 
-    .logo-wrap img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     h1 {
       font-size: 24px;
       letter-spacing: 0.08em;
@@ -99,28 +93,12 @@
       box-shadow: 0 8px 18px rgba(0,0,0,0.04);
     }
 
-    /* 🔥 추가: 배너 */
-    .banner {
-      width: 100%;
-      border-radius: 16px;
-      overflow: hidden;
-      aspect-ratio: 4 / 2; /* 배너 느낌 */
-      background: #eee;
-    }
-
-    .banner img {
-      width: 100%;
-      height: 100%;
-      object-fit: cover;
-    }
-
     /* 슬라이드 */
     .slideshow {
       position: relative;
       width: 100%;
       border-radius: 16px;
       overflow: hidden;
-      background: #f5f5f5;
       aspect-ratio: 4 / 3;
     }
 
@@ -138,9 +116,26 @@
       opacity: 1;
     }
 
-    /* 개별 사진 초점 조정 */
-    .slide1 { object-position: center 35%; }
+    /* 초점 조정 */
+    .slide1 { object-position: center 32%; }
     .slide2 { object-position: center 39%; }
+    .slide7,
+    .slide8 { object-position: center 30%; }
+
+    /* 배너 이미지 크게 보이게 */
+    .banner {
+      width: 100%;
+      height: 340px; /* ★ 위아래 더 크게 수정됨 */
+      border-radius: 16px;
+      overflow: hidden;
+    }
+
+    .banner img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      object-position: center 40%;
+    }
 
     .notice-card {
       border: 1px solid #e0e0e0;
@@ -205,12 +200,11 @@
       color: #aaa;
       margin-top: 10px;
     }
+
   </style>
 </head>
 <body>
-
   <audio id="bgm" src="BGM.mp3" autoplay loop></audio>
-
   <div id="snow"></div>
 
   <div class="page">
@@ -224,12 +218,7 @@
       <p class="tagline">하루를 특별하게 만드는 디저트, 디즈 파티세리</p>
     </header>
 
-    <!-- ✅ 추가된 배너 이미지 -->
-    <div class="banner card">
-      <img src="10.jpg" alt="배너 이미지">
-    </div>
-
-    <!-- 기존 슬라이드 -->
+    <!-- 슬라이드 -->
     <div class="slideshow card">
       <img src="1.jpg" class="slide slide1 active">
       <img src="2.jpg" class="slide slide2">
@@ -242,7 +231,7 @@
       <img src="9.jpg" class="slide slide9">
     </div>
 
-    <!-- NOTICE -->
+    <!-- OPEN NOTICE -->
     <section class="card notice-card">
       <div class="notice-title">OPEN NOTICE</div>
       <p class="notice-text">
@@ -283,6 +272,11 @@
       </div>
     </section>
 
+    <!-- ⭐ 배너 이미지 (10번) — 매장정보 아래로 이동 + 크게 출력됨 -->
+    <div class="banner card">
+      <img src="10.jpg" alt="배너 이미지">
+    </div>
+
     <footer>
       © <span id="year"></span> D'z PATTISSERIE
     </footer>
@@ -300,7 +294,6 @@
       slides[index].classList.add("active");
     }, 2500);
 
-    /* 눈 효과 */
     const snow = document.getElementById("snow");
     const COUNT = 70;
 
