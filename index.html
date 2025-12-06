@@ -4,6 +4,7 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>D'z PATTISSERIE</title>
+
   <style>
     * {
       box-sizing: border-box;
@@ -12,9 +13,16 @@
       font-family: -apple-system, BlinkMacSystemFont, "Pretendard", "Noto Sans KR", system-ui, sans-serif;
     }
 
+    /* 🔥 배경 이미지 넣고 싶으면 아래 주석 해제하고 파일명 변경 */
     body {
       background-color: #f5f5f5;
       color: #333;
+
+      /* 예시: 배경을 이미지로 채우기
+      background-image: url('background.jpg');
+      background-size: cover;
+      background-position: center;
+      */
     }
 
     .page {
@@ -69,17 +77,13 @@
       padding: 18px 16px;
       margin-bottom: 14px;
       box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      line-height: 1.6;
     }
 
     section h2 {
       font-size: 15px;
+      font-weight: 700;
       margin-bottom: 8px;
-    }
-
-    section p {
-      font-size: 14px;
-      line-height: 1.6;
-      color: #555;
     }
 
     .menu-list {
@@ -131,18 +135,12 @@
       border: 1px solid #444;
       color: #fff;
       background: #444;
-      transition: transform 0.1s ease, box-shadow 0.1s ease, opacity 0.1s ease;
+      transition: 0.1s ease;
     }
 
     .btn.sub {
       background: #ffffff;
       color: #444;
-    }
-
-    .btn:hover {
-      transform: translateY(-1px);
-      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-      opacity: 0.95;
     }
 
     footer {
@@ -152,31 +150,57 @@
       margin-top: 10px;
     }
 
-    @media (max-width: 360px) {
-      .page {
-        padding: 24px 14px 30px;
-      }
-      .logo-wrap {
-        width: 150px;
-        height: 150px;
-      }
-    }
   </style>
 </head>
+
 <body>
+
+  <!-- 🔥 배경 음악 자동 재생 -->
+  <audio src="BGM.mp3" autoplay loop></audio>
+
   <div class="page">
     <div>
-      <!-- 상단 로고 + 가게명 -->
+
       <header>
         <div class="logo-wrap">
-          <!-- 👉 여기 파일명을, 네가 저장한 로고 파일명으로 바꾸면 됨 -->
           <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
         </div>
         <h1>D'z PATTISSERIE</h1>
         <p class="tagline">하루를 특별하게 만드는 디저트, 디지 파티세리</p>
       </header>
 
-      <!-- 소개 -->
+      <!-- 🟣 오픈 공지 섹션 추가 -->
+      <section>
+        <span class="label">NOTICE</span>
+        <h2>오픈 인사말</h2>
+        <p>
+          안녕하세요!<br><br>
+          한 해의 마지막 달인 12월을 맞아 많이 분주하시고 바쁘신 와중에도  
+          저희 <strong>"디즈파티세리"</strong> 오픈을 기다려주시고 응원해주셔서 진심으로 감사드립니다.<br><br>
+
+          드디어 오랜 준비 과정을 거쳐  
+          <strong>12/10(수) 디저트 케이크 전문점을 오픈</strong>하게 되었습니다.<br><br>
+
+          📌 <strong>상호</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;디즈 파티세리<br><br>
+
+          📌 <strong>오픈 날짜</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;12/10(수) 오전 10시 ~ 오후 20시<br><br>
+
+          📌 <strong>찾아오시는 길</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;충남 아산시 탕정면 매곡한들7길 54,  
+          1층 103호<br><br>
+
+          📌 <strong>주차 안내</strong><br>
+          &nbsp;&nbsp;&nbsp;&nbsp;건물 뒤 공용주차장 이용 가능<br>
+          &nbsp;&nbsp;&nbsp;&nbsp;길가 주차 가능<br><br>
+
+          바쁘시더라도 저희의 첫걸음을 함께해주시면 큰 힘이 될 것 같습니다.<br>
+          감사합니다.
+        </p>
+      </section>
+
+      <!-- 기존 섹션들 그대로 유지 -->
       <section>
         <span class="label">ABOUT</span>
         <h2>작은 한 조각으로 채워지는 달콤한 하루</h2>
@@ -186,7 +210,6 @@
         </p>
       </section>
 
-      <!-- 시그니처 메뉴 -->
       <section>
         <span class="label">SIGNATURE MENU</span>
         <h2>추천 메뉴</h2>
@@ -198,23 +221,12 @@
         </ul>
       </section>
 
-      <!-- 오픈 이벤트 -->
-      <section>
-        <span class="label">OPEN EVENT</span>
-        <h2>오픈 기념 이벤트</h2>
-        <p>
-          매장 방문 후 인스타그램 업로드 시, 구움과자 1종을 서비스로 드립니다.<br />
-          (기간: ~오픈 후 2주 / 자세한 내용은 매장 내 안내문 참고)
-        </p>
-      </section>
-
-      <!-- 매장 정보 -->
       <section>
         <span class="label">INFO</span>
         <h2>매장 안내</h2>
         <div class="info-row">
           <span>주소</span>
-          <div>○○시 ○○구 ○○로 123, 1층 (주소 입력)</div>
+          <div>충남 아산시 탕정면 매곡한들7길 54, 1층 103호</div>
         </div>
         <div class="info-row">
           <span>전화</span>
@@ -227,22 +239,8 @@
             토·일 & 공휴일 12:00 ~ 20:00
           </div>
         </div>
-        <div class="btn-area">
-          <!-- 필요 없는 버튼은 a 태그를 지우면 됨 -->
-          <a href="tel:01000000000" class="btn">📞 매장 전화하기</a>
-          <a href="#" class="btn sub">📍 지도 열기</a>
-        </div>
       </section>
 
-      <!-- SNS / 네이버 링크 -->
-      <section>
-        <span class="label">ONLINE</span>
-        <h2>온라인에서 먼저 둘러보세요</h2>
-        <div class="btn-area">
-          <a href="#" class="btn">📸 인스타그램 바로가기</a>
-          <a href="#" class="btn sub">⭐ 네이버 플레이스 보기</a>
-        </div>
-      </section>
     </div>
 
     <footer>
@@ -251,8 +249,8 @@
   </div>
 
   <script>
-    // 푸터 연도 자동 갱신
     document.getElementById("year").textContent = new Date().getFullYear();
   </script>
+
 </body>
 </html>
