@@ -13,12 +13,11 @@
     }
 
     body {
-      background-color: #e1d4bd;
+      background-color: #decfb8;
       color: #333;
       overflow-x: hidden;
     }
 
-    /* 눈 효과 레이어 */
     #snow {
       position: fixed;
       top: 0;
@@ -58,18 +57,9 @@
     }
 
     @keyframes glowPulse {
-      0% {
-        box-shadow: 0 0 6px rgba(255, 255, 255, 0.7),
-                    0 0 14px rgba(255, 220, 180, 0.4);
-      }
-      50% {
-        box-shadow: 0 0 12px rgba(255, 255, 255, 0.9),
-                    0 0 22px rgba(255, 220, 180, 0.7);
-      }
-      100% {
-        box-shadow: 0 0 6px rgba(255, 255, 255, 0.7),
-                    0 0 14px rgba(255, 220, 180, 0.4);
-      }
+      0% { box-shadow: 0 0 6px rgba(255,255,255,0.7), 0 0 14px rgba(255,220,180,0.4); }
+      50% { box-shadow: 0 0 12px rgba(255,255,255,0.9), 0 0 22px rgba(255,220,180,0.7); }
+      100% { box-shadow: 0 0 6px rgba(255,255,255,0.7), 0 0 14px rgba(255,220,180,0.4); }
     }
 
     .logo-wrap {
@@ -87,6 +77,7 @@
       width: 100%;
       height: 100%;
       object-fit: cover;
+      display: block;
     }
 
     h1 {
@@ -102,15 +93,13 @@
       margin-top: 4px;
     }
 
-    /* 공통 카드 스타일 */
     .card {
       background: #ffffff;
       border-radius: 16px;
       padding: 18px 16px;
-      box-shadow: 0 8px 18px rgba(0, 0, 0, 0.04);
+      box-shadow: 0 8px 18px rgba(0,0,0,0.04);
     }
 
-    /* 슬라이드쇼 */
     .slideshow {
       position: relative;
       width: 100%;
@@ -134,25 +123,29 @@
       opacity: 1;
     }
 
-    /* OPEN NOTICE */
+    /* 개별 사진 초점 조정 */
+    .slide1 { object-position: center 48%; } /* 1번 살짝 위 */
+    .slide7 { object-position: center 40%; } /* 7번 더 위 */
+    .slide8 { object-position: center 40%; } /* 8번 더 위 */
+    .slide9 { object-position: center 45%; } /* 9번도 아주 약간 위 */
+
+    .notice-card {
+      border: 1px solid #e0e0e0;
+    }
+
     .notice-title {
       font-size: 15px;
       font-weight: 700;
       margin-bottom: 8px;
     }
 
-    .notice-card {
-      border: 1px solid #dcd2c4;
-    }
-
     .notice-text {
       font-size: 14px;
       line-height: 1.7;
-      color: #555;
       white-space: pre-line;
+      color: #555;
     }
 
-    /* 매장 정보 */
     .section-title {
       font-size: 15px;
       font-weight: 700;
@@ -189,13 +182,8 @@
       font-size: 13px;
       font-weight: 600;
       border: 1px solid #444;
-      color: #fff;
       background: #444;
-    }
-
-    .btn.sub {
-      background: #ffffff;
-      color: #444;
+      color: #fff;
     }
 
     footer {
@@ -216,40 +204,38 @@
     <header>
       <div class="logo-shell">
         <div class="logo-wrap">
-          <img src="logo-dz.png" alt="D'z PATTISSERIE 로고" />
+          <img src="logo-dz.png" alt="logo">
         </div>
       </div>
       <h1>D'z PATTISSERIE</h1>
       <p class="tagline">하루를 특별하게 만드는 디저트, 디즈 파티세리</p>
     </header>
 
-    <!-- 슬라이드쇼 -->
+    <!-- 슬라이드 -->
     <div class="slideshow card">
-      <img src="1.jpg" class="slide active" style="object-position:center top 8%;" />
-      <img src="2.jpg" class="slide" />
-      <img src="3.jpg" class="slide" />
-      <img src="4.jpg" class="slide" />
-      <img src="5.jpg" class="slide" />
-      <img src="6.jpg" class="slide" />
-      <img src="7.jpg" class="slide" style="object-position:center bottom;" />
-      <img src="8.jpg" class="slide" style="object-position:center bottom;" />
-      <img src="9.jpg" class="slide" style="object-position:center bottom;" />
+      <img src="1.jpg" class="slide slide1 active">
+      <img src="2.jpg" class="slide">
+      <img src="3.jpg" class="slide">
+      <img src="4.jpg" class="slide">
+      <img src="5.jpg" class="slide">
+      <img src="6.jpg" class="slide">
+      <img src="7.jpg" class="slide slide7">
+      <img src="8.jpg" class="slide slide8">
+      <img src="9.jpg" class="slide slide9">
     </div>
 
-    <!-- OPEN NOTICE -->
+    <!-- NOTICE -->
     <section class="card notice-card">
       <div class="notice-title">OPEN NOTICE</div>
       <p class="notice-text">
 안녕하세요!
 
 한 해의 마지막 달인 12월을 맞아
-많이 분주하시고 바쁘신 와중에도
-저희 "디즈파티세리" 오픈을 기다려주시고
-응원해주셔서 진심으로 감사드립니다.
+많이 바쁘신 와중에도 저희 디즈파티세리를 기다려주시고
+응원해주셔서 감사드립니다.
 
-드디어 오랜 준비과정을 거쳐
-12/10(수) 디저트 케이크 전문점을
-오픈하게 되었습니다.
+드디어 오랜 준비를 거쳐 12/10(수)
+디저트 케이크 전문점을 오픈하게 되었습니다.
 
 바쁘시더라도
 저희의 첫걸음을 함께해주시면
@@ -258,7 +244,7 @@
 감사합니다.
 
 📌 오픈 날짜  
-12/10(수)  오전 10시 ~ 오후 20시
+12/10(수) 오전 10시 ~ 오후 20시
 
 📌 주차  
 건물 뒤 공용주차장 이용  
@@ -269,74 +255,62 @@
     <!-- 매장 정보 -->
     <section class="card notice-card">
       <div class="section-title">매장 정보</div>
-      <div class="info-row">
-        <span>주소</span>
-        충남 아산시 탕정면 매곡한들7길 54, 1층 103호
-      </div>
-      <div class="info-row">
-        <span>영업시간</span>
-        오전 10:00 ~ 오후 20:00
-      </div>
-      <div class="info-row">
-        <span>주차</span>
-        건물 뒤 공용주차장 및 인근 길가 주차 가능
-      </div>
+      <div class="info-row"><span>주소</span>충남 아산시 탕정면 매곡한들7길 54, 1층 103호</div>
+      <div class="info-row"><span>영업시간</span>오전 10:00 ~ 오후 20:00</div>
+      <div class="info-row"><span>주차</span>건물 뒤 공용주차장 및 인근 길가 주차 가능</div>
 
       <div class="btn-area">
-        <a href="https://naver.me/I5ygTkP2" class="btn sub" target="_blank">📍 네이버 지도 열기</a>
-        <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" class="btn" target="_blank">📸 인스타그램 바로가기</a>
+        <a href="https://naver.me/I5ygTkP2" class="btn sub">📍 네이버 지도 열기</a>
+        <a href="https://www.instagram.com/d.z_patisserie?igsh=dzk1bTgyMXpvbDN0" class="btn">📸 인스타그램</a>
       </div>
     </section>
 
     <footer>
-      © <span id="year"></span> D'z PATTISSERIE.
+      © <span id="year"></span> D'z PATTISSERIE
     </footer>
   </div>
 
   <script>
     document.getElementById("year").textContent = new Date().getFullYear();
 
-    /* 슬라이드쇼 */
-    const slides = document.querySelectorAll(".slideshow .slide");
-    let currentIndex = 0;
+    const slides = document.querySelectorAll(".slide");
+    let index = 0;
 
     setInterval(() => {
-      slides[currentIndex].classList.remove("active");
-      currentIndex = (currentIndex + 1) % slides.length;
-      slides[currentIndex].classList.add("active");
+      slides[index].classList.remove("active");
+      index = (index + 1) % slides.length;
+      slides[index].classList.add("active");
     }, 2500);
 
-    /* 눈 효과 A타입 */
-    const snowContainer = document.getElementById("snow");
-    const SNOW_COUNT = 70;
 
-    function createSnowflake() {
-      const snowflake = document.createElement("div");
+    const snow = document.getElementById("snow");
+    const COUNT = 70;
+
+    function makeSnow() {
+      const s = document.createElement("div");
       const size = Math.random() * 4 + 4;
-      const startX = Math.random() * 100;
-      const duration = Math.random() * 5 + 6;
-      const delay = Math.random() * 5;
 
-      snowflake.style.position = "absolute";
-      snowflake.style.top = "-10px";
-      snowflake.style.left = startX + "vw";
-      snowflake.style.width = size + "px";
-      snowflake.style.height = size + "px";
-      snowflake.style.borderRadius = "50%";
-      snowflake.style.background = "rgba(255,255,255,0.9)";
-      snowflake.style.opacity = Math.random() * 0.4 + 0.6;
+      s.style.position = "absolute";
+      s.style.top = "-10px";
+      s.style.left = Math.random() * 100 + "vw";
+      s.style.width = size + "px";
+      s.style.height = size + "px";
+      s.style.background = "rgba(255,255,255,0.9)";
+      s.style.borderRadius = "50%";
+      s.style.boxShadow = "0 0 6px rgba(255,255,255,0.8)";
+      s.style.opacity = Math.random() * 0.4 + 0.6;
+      s.style.animation = `fall ${Math.random() * 5 + 6}s linear ${Math.random() * 5}s infinite`;
 
-      snowflake.style.animation = `fall ${duration}s linear ${delay}s infinite`;
-      snowContainer.appendChild(snowflake);
+      snow.appendChild(s);
     }
 
-    for (let i = 0; i < SNOW_COUNT; i++) createSnowflake();
+    for (let i = 0; i < COUNT; i++) makeSnow();
 
     const style = document.createElement("style");
     style.innerHTML = `
       @keyframes fall {
-        0% { transform: translateY(-10px); }
-        100% { transform: translateY(110vh); }
+        0% { transform: translate3d(0, -10px, 0); }
+        100% { transform: translate3d(10px, 110vh, 0); }
       }
     `;
     document.head.appendChild(style);
